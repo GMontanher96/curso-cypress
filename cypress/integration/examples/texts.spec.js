@@ -22,7 +22,7 @@ describe('Work with basic elements', () => {
         cy.get('#resultado').should('have.text', 'Voltou!')
     })
 
-    it.only('TextFields', () => {
+    it('TextFields', () => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
         cy.get('#formNome').type('Cypress Test')
         cy.get('#formNome').should('have.value', 'Cypress Test')
@@ -32,11 +32,19 @@ describe('Work with basic elements', () => {
         
 
         cy.get('#elementosForm\\:sugestoes')
-            .type('textarea')
-            .should('have.value', 'textarea')
+        .clear()
+            .type('Error{selectall}acerto', {delay:100})
+            .should('have.value', 'acerto')
+    })
 
-            cy.get('#tabelaUsuarios > :nth-child(2) > :nth-child(1) > :nth-child(6) > input')
-            .type('????')
+    it('RadioButton', () =>{
+        cy.get('#formSexoFem')
+        .click()
+        .should('be.checked')
+
+        cy.get('#formSexoMasc').should('not.be.checked')
+
+        cy.get("[name='formSexo']").should('have.length', 2)
     })
     
 })
