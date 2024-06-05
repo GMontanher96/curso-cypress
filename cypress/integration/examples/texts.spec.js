@@ -37,7 +37,7 @@ describe('Work with basic elements', () => {
             .should('have.value', 'acerto')
     })
 
-    it('RadioButton', () =>{
+    it('RadioButton', () => {
         cy.get('#formSexoFem')
         .click()
         .should('be.checked')
@@ -48,6 +48,7 @@ describe('Work with basic elements', () => {
     })
 
     it.only('Checkbox', () => {
+        cy.visit('https://wcaquino.me/cypress/componentes.html')
         cy.get('#formComidaPizza')
         .click()
         .should('be.checked')
@@ -56,5 +57,15 @@ describe('Work with basic elements', () => {
         cy.get('#formComidaPizza').should('not.be.checked')
         cy.get('#formComidaVegetariana').should('be.checked')
     })
+
+    it.only('Combo', () => {
+        cy.visit('https://wcaquino.me/cypress/componentes.html')
+        cy.get('[data-test=dataEscolaridade]')
+        .select('2o grau completo')
+        .should('have.value', '2o grau completo')
+    })
+
+    it.only()
+
     
 })
