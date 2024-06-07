@@ -63,9 +63,21 @@ describe('Work with basic elements', () => {
         cy.get('[data-test=dataEscolaridade]')
         .select('2o grau completo')
         .should('have.value', '2o grau completo')
+
+        cy.get('[data-test=dataEscolaridade]')
+        .select('1graucomp')
+        .should('have.value', '1graucomp')
+        //TODO validar as opções do combo
+
     })
 
-    it.only()
+    it.only('Combo multiplo', () => {
+        cy.visit('https://wcaquino.me/cypress/componentes.html')
+        cy.get('[data-testid=dataEsportes]')
+        .select(['natação', 'Corrida', 'nada'])
+
+        //TODO validar opç~oes selecionaas do combo muiltiplo
+    })
 
     
 })
