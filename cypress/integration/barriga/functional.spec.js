@@ -16,4 +16,8 @@ describe('Should test at a functional level', () => {
         cy.get('.btn').click()
         cy.get('.toast-message').should('contain', 'Inserida com sucesso')
     })
+
+    it.only('Should update an account', () => {
+        cy.get(':nth-child(1) > :nth-child(2) > :nth-child(1) > .far')
+    })
 })
