@@ -16,5 +16,9 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
+Cypress.SelectorPlayground.defaults({
+    selectorPriority: ['data-wc', 'data-cy', 'data-test', 'data-testid', 'id', 'class', 'attributes', 'tag', 'nth-child' ]
+})
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
