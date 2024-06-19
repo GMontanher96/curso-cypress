@@ -24,9 +24,16 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+Cypress.Commands.add('login', (user, passwd) => {
+  cy.visit('https://barrigareact.wcaquino.me/')
+  cy.get(loc.LOGIN.USER).type('a@a')
+  cy.get(loc.LOGIN.PASSWORD).type('a')
+  cy.get(loc.LOGIN.BTN.LOGIN).click()
+  cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
+})
 Cypress.Commands.add('getToken', (user, passwd) => {
     cy.request({
-        url: "https://barrigarest.wcaquino.me/signin",
+        url: "/signin",
         method: "POST",
         body: {
           email: user,
@@ -43,9 +50,9 @@ Cypress.Commands.add('resetRest', () => {
     cy.getToken('a@a', 'a').then(token => {
         cy.request({
             method: 'GET',
-            url: 'https://barrigarest.wcaquino.me/reset',
+            url: '/reset',
             headers: { Authorization: `JWT ${token}`},
-        })
+        }).its('status').should('be.equal', 200)
 
     })
 })

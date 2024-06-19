@@ -12,12 +12,12 @@ describe("Should test at a functional level", () => {
   });
 
   beforeEach(() => {
-    cy.resetRest()
+    cy.resetRest(token)
   });
 
   it("Incluindo Conta", () => {
       cy.request({
-        url: "https://barrigarest.wcaquino.me/contas",
+        url: "/contas",
         method: "POST",
         headers: { Authorization: `JWT ${token}`},
         body: {
