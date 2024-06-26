@@ -33,25 +33,30 @@ describe("Should test at a functional level", () => {
   });
 
   it.only("Should update an account", () => {
-cy.request({
-  method: 'GET',
-  url: '/contas',
-  headers: { Authorization: `JWT ${token}`},
-  qs: {
-    nome: 'Conta para movimentacoes'
-  }
-}).then(res => console.log(res))
+    cy.request({
+      method: 'GET',
+      url: '/contas',
+      headers: { Authorization: `JWT ${token}`},
+      qs: {
+        nome: 'Conta para alterar'
+      }
+    }).then(res => {
+      cy.request({
+        url: `https://barrigarest.wcaquino.me/contas/${res.body[0].id}`,
+          method: 'PUT',
+          headers: { Authorization: `JWT ${token}`},
+          body: {
+            nome: 'conta alterada via rest'
+         }
+    }).as('response')
+    
+  })
 
-    /////cy.request({
-///url: 'https://barrigarest.wcaquino.me/contas/2168522',
-   //   method: 'PUT',
-   //   headers: { Authorization: `JWT ${token}`},
-   ///   body: {
-  //      nome: 'conta alterada via rest'
- //     }
- //   }).as('response')
+  cy.get('@response').its('status').should('be.equal', 200)
 
- //   cy.get('@response').its('status').should('be.equal', 200)
-  });
+})
 
-});
+it('Should not create an account with same name', () => {
+  
+})
+})
