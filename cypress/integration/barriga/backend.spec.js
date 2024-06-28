@@ -73,7 +73,4 @@ it.only('Should not create an account with same name', () => {
     expect(res.body.error).to.be.equal('Já existe uma conta com esse nome!')
   })
 })
-it('Should create a transaction', () => {
-
-})
 })
